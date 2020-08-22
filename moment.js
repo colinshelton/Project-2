@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
+$(".btn").on("click", function () {
+  //console.log("I CLICKED THE BUTTON");
+  
+});
+
   <!-- reference Moment.js library -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
-</head>
-<body>
 
-<h2>Moment Date</h2>
-<!-- container for Moment.js output -->
-<div id="displayMoment"></div>
-
-<h2>JavaScript Date</h2>
 <!-- container for JavaScript Date output -->
 <div id="displayJsDate"></div>
 
@@ -31,7 +26,4 @@
   var eDisplayDate = document.getElementById('displayJsDate');
   eDisplayDate.innerHTML = NowDate;
 })();
-</script>
 
-</body>
-</html>
