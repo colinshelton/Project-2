@@ -2,6 +2,9 @@
 const db = require("../models");
 const passport = require("../config/passport");
 
+const isAuthenticated = require("../config/middleware/isAuthenticated");
+
+
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -30,10 +33,29 @@ module.exports = function(app) {
       });
   });
 
+  app.post("/api/punch", (req, res) => {
+    db.Punch.create({
+      UserId: req.body.userId,
+      punch: req.body.punch
+    }).then(response => res.json(response))
+  });
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
+  });
+
+  //get all punchse
+  app.get("/api/punches/:id", (req, res) => {
+    db.User.findAll({
+      include: {
+        model: db.Punch,
+        where: {
+          userId: req.params.id
+        }
+      }
+    }).then(response => res.json(response))
   });
 
   // Route for getting some data about our user to be used client side
